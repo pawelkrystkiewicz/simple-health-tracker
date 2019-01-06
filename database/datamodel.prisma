@@ -1,0 +1,50 @@
+enum UserType {
+  ADMIN
+  USER
+  TEMP_USER
+  NEW
+}
+
+type User {
+  _id: ID! @unique
+  email: String! @unique
+  password: String!
+  name: String!
+  avatar: String
+  role: UserType!
+  weight: [Weight!]!
+}
+
+type Weight {
+  id: ID! @unique
+  weight: Float
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type Cardio {
+  id: ID! @unique
+  bp: String
+  hr: Int
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+type Settings {
+  id: ID! @unique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  height: Float!
+}
+
+type Circumferences {
+  id: ID! @unique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  forearm: Float!
+  waist: Float!
+  abdomen: Float!
+  hips: Float!
+  thigh: Float!
+  calf: Float!
+  wrist: Float!
+}

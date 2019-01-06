@@ -1,0 +1,14 @@
+endpoint: ${env:AUTH_ENDPOINT}
+datamodel: datamodel.prisma
+secret: ${env:AUTH_SECRET}
+generate:
+  - generator: graphql-schema
+    output: ./generated/
+hooks:
+  post-deploy:
+      - echo "Deployment finished with ${env:AUTH_SECRET} @ ${env:AUTH_ENDPOINT}"
+      - graphql get-schema --project database
+      - graphql prepare
+      - graphql generate
+seed:
+  import: seed.graphql
