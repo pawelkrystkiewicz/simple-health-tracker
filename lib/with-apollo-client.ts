@@ -8,7 +8,6 @@ import initApollo from './init-apollo';
 
 function parseCookies(req, options = {}) {
 	let myCookie = cookie.parse(req ? req.headers.cookie || '' : document.cookie, options);
-	console.log(myCookie);
 	return myCookie;
 }
 

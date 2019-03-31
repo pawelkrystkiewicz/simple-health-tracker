@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 import { graphqlDynamic } from './DynamicQuery';
 import { withStyles } from '@material-ui/core/styles';
-import withApollo from '../lib/with-apollo-client';
+import withApollo from '../../lib/with-apollo-client';
 
 const ListEntities = (props) => {
 	const { errorComponent } = props;

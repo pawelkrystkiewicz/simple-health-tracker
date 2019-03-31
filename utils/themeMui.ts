@@ -18,11 +18,36 @@ export const h073B3A = '#073B3A';
 
 export const headerBackground = '#000000';
 
-export const theme = createMuiTheme({
-	palette: {
-		type: 'light',
-	},
-	typography: {
-		useNextVariants: true
-	}
-});
+export const theme = (type = 'light') =>
+	createMuiTheme({
+		palette: {
+			type,
+			// primary: {
+			// 	// light: will be calculated from palette.primary.main,
+			// 	main: '#ff4400',
+			// 	// dark: will be calculated from palette.primary.main,
+			// 	// contrastText: will be calculated to contrast with palette.primary.main
+			// },
+			// secondary: {
+			// 	light: '#0066ff',
+			// 	main: '#0044ff',
+			// 	// dark: will be calculated from palette.secondary.main,
+			// 	contrastText: '#ffcc00',
+			// },
+		},
+		typography: {
+			fontFamily: [
+				'-apple-system',
+				'BlinkMacSystemFont',
+				'"Segoe UI"',
+				'Roboto',
+				'"Helvetica Neue"',
+				'Arial',
+				'sans-serif',
+				'"Apple Color Emoji"',
+				'"Segoe UI Emoji"',
+				'"Segoe UI Symbol"'
+			].join(','),
+			useNextVariants: true
+		}
+	});

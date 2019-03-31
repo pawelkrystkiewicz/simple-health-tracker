@@ -1,0 +1,13 @@
+export const myBlue = '#2677BD';
+export const myBlack = '#222222';
+export const greyBlack = '#282828';
+export const outerSpace = '#4A4A4A';
+export const myWhite = '#ffffff';
+export const myGreen = '#2ecc71';
+export const myOrange = '#e67e22';
+export const myPurple = '#D27AFF';
+export const h2677BD = '#2677BD';
+export const h0A1128 = '#0A1128';
+export const h001F54 = '#001F54';
+export const h104F55 = '#104F55';
+export const h073B3A = '#073B3A';

@@ -1,46 +1,46 @@
-import { graphql } from 'react-apollo'
-import gql from 'graphql-tag'
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
 
 class login extends React.Component {
 	state = {
 		email: null,
 		password: null,
 		error: null
-	}
+	};
 
-	onFormSubmit = e => {
-		e.preventDefault()
-		let { email, password } = this.state
+	onFormSubmit = (e) => {
+		e.preventDefault();
+		let { email, password } = this.state;
 
 		// Check non null email && password
 		if (typeof email === 'string' && typeof password === 'string') {
 			// trim fields
-			email = email.trim()
-			password = password.trim()
+			email = email.trim();
+			password = password.trim();
 
 			// Check for email && password length
 			if (email.length > 0 && password.length > 0) {
 				this.props
 					.mutate({
 						variables: {
-							email,
-							password
+							data: {
+								email,
+								password
+							}
 						}
 					})
 					.then(() => {
-						this.setState({ error: null })
-						window.location = '/'
+						this.setState({ error: null });
+						window.location = '/dashboard';
 					})
-					.catch(({ graphQLErrors: err }) =>
-						this.setState({ error: err })
-					)
+					.catch(({ graphQLErrors: err }) => this.setState({ error: err }));
 			} else {
-				this.setState({ error: "Email & Password Field shouldn't be empty" })
+				this.setState({ error: "Email & Password Field shouldn't be empty" });
 			}
 		} else {
-			this.setState({ error: 'Email & Password Field Required!' })
+			this.setState({ error: 'Email & Password Field Required!' });
 		}
-	}
+	};
 
 	render() {
 		return [
@@ -50,16 +50,16 @@ class login extends React.Component {
 					<label> Email Address </label>
 					<input
 						type="email"
-						onInput={e => this.setState({ email: e.target.value })}
-						placeholder="john@doe.com"
+						onInput={(e) => this.setState({ email: e.target.value })}
+						placeholder="E-mail"
 					/>
 				</div>
 				<div>
 					<label> Password </label>
 					<input
 						type="password"
-						onInput={e => this.setState({ password: e.target.value })}
-						placeholder="******"
+						onInput={(e) => this.setState({ password: e.target.value })}
+						placeholder="Password"
 					/>
 				</div>
 				<div>
@@ -96,20 +96,18 @@ class login extends React.Component {
 						}
 					`}
 				</style>
-			</form>,
-			<a key="btn" href="/auth/github">
-				{' '}
-				Auth With GitHub{' '}
-			</a>
-		]
+			</form>
+		];
 	}
 }
 
 const mutator = gql`
-	mutation login($email: String!, $password: String!) {
-		login(data:{email: $email, password: $password}) {
+	mutation login($data: LoginInput!) {
+		login(data: $data) {
+			id
+			firstName
 			email
 		}
 	}
-`
-export default graphql(mutator)(login)
+`;
+export default graphql(mutator)(login);

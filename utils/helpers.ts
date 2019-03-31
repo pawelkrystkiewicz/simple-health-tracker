@@ -37,6 +37,4 @@ export const timeConversion = (minutes) => {
 
 export const sumArrayByProperty = (property, array) => array.reduce((a, b) => a + (b[property] || 0), 0);
 export const sumArray = (array = [ 0, 0 ]) => array.reduce((a, b) => a + b, 0);
-export const has = (object, key) => {
-	return object ? hasOwnProperty.call(object, key) : false;
-};
+

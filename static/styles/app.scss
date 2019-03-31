@@ -1,4 +1,12 @@
 @import 'colors';
+:root {
+	font-family: 'Open Sans', sans-serif;
+	padding: 0;
+	margin: 0;
+}
+
+html {
+}
 
 body {
 	background: $main-color;
@@ -16,11 +24,61 @@ body {
 	align-items: center;
 	align-content: center;
 }
-.flex-row-spread{
-    display: flex;
+.flex-row-spread {
+	display: flex;
 	flex-direction: row;
 	flex-wrap: nowrap;
 	justify-content: space-between;
 	align-items: center;
 	align-content: center;
 }
+
+.current-weight {
+	font-size: 20px;
+	color: red;
+}
+.dashboard {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	align-items: space-between;
+	align-content: space-between;
+
+	.add-button {
+	position: absolute;
+	right: 10px;
+	top: 10px;
+}
+}
+.dashboard--info-cards {
+	height: 100%;
+	padding: 10px;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: stretch;
+	align-content: stretch;
+}
+
+.card {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: flex-start;
+	align-items: center;
+	align-content: center;
+
+	.title {
+		padding-bottom: 0;
+		margin-bottom: 0;
+	}
+
+	.subtext {
+		font-size: 16px;
+		padding-left: 5px;
+	}
+}
+
+
