@@ -1,16 +1,7 @@
 import * as React from 'react';
-import config from '../utils/config';
 import '../static/styles/app.scss';
-import LoginApollo from '../components/LoginApollo';
+import LoginApollo from '../components/Login/LoginApollo';
 
-const Index: React.FunctionComponent = () => (
-	<div>
-		<div className="hero">
-			<center>
-				<LoginApollo />
-			</center>
-		</div>
-	</div>
-);
+const Index: React.FunctionComponent = () => <LoginApollo/>;
 
 export default Index;

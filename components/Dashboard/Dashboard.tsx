@@ -1,6 +1,6 @@
 import React from 'react';
 // import { NoSSR } from 'next';
-import NoSSR from 'react-no-ssr';
+// import NoSSR from 'react-no-ssr';
 import Spinner from '../Common/Spinner';
 import '../../static/styles/app.scss';
 import { Fab } from '@material-ui/core';
@@ -15,13 +15,13 @@ import RecordsMutations from './RecordsMutations';
 import { getFatPercentAvg, usNavyMethod, baileyMethod } from './utils/helpers';
 import CIRCUMFERENCE from '../../api/Circumference';
 import Table from '../Table/Table';
-import { getISOWeek, parseISO } from 'date-fns';
+import { getISOWeek, parseISO, getMilliseconds } from 'date-fns';
 import format from 'date-fns/format';
 import dynamic from 'next/dynamic'
 const ApexNoSSR = dynamic(import('./ApexChart'), {
 	ssr: false
 })
-export const DashboardContext = React.createContext();
+export const DashboardContext = React.createContext({});
 
 class Dashboard extends React.Component {
 	static pageTransitionDelayEnter = true;
@@ -63,6 +63,18 @@ class Dashboard extends React.Component {
 				return;
 			})
 			.catch((e) => console.error(e));
+			// console.log(this.state.weight)
+			
+		let chartData = this.state.weight.map(({weight, createdAt})=>{
+			return {
+				// x: new Date(createdAt).getTime(),
+				x: format(new Date(createdAt).getTime(), `dd/MM/yyyy`),
+						 y: weight
+				}
+			})
+	
+			this.setState(()=>({chartData}))
+			console.log(this.state.chartData)
 	};
 	getCircumferenceData = async () => {
 		this.startLoading();
@@ -143,7 +155,6 @@ class Dashboard extends React.Component {
 				<div className="dashboard">
 					<Fab
 						className="dashboard--add-button"
-						variant="raised"
 						color="primary"
 						aria-label="Add"
 						type="submit"
@@ -178,7 +189,7 @@ class Dashboard extends React.Component {
 									lineDataKey="weight"
 									lineStroke="#187bcd"
 								/>
-								<ApexNoSSR/>
+									<ApexNoSSR chartData={this.state.chartData}/>
 							</div>
 							<div className="dashboard--info-cards">
 								<InfoCard value={this.state.currentWeight} unit={`kg`} title={`Weight`} width={width} />

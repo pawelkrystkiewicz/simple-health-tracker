@@ -165,8 +165,6 @@ class Authenticated extends React.Component {
 					</div>
 					<Divider />
 					<List>{mainListItems}</List>
-					<Divider />
-					<List>{secondaryListItems}</List>
 				</Drawer>
 
 				<main className={classes.content}>

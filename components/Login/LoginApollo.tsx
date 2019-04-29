@@ -1,6 +1,14 @@
-import { graphql } from 'react-apollo';
+import React from 'react';
+import withApollo from '../../lib/with-apollo-client';
 import gql from 'graphql-tag';
-
+import Router from 'next/router';
+const mutator = gql`
+	mutation login($data: LoginInput!) {
+		login(data: $data) {
+			email
+		}
+	}
+`;
 class login extends React.Component {
 	state = {
 		email: null,
@@ -20,8 +28,10 @@ class login extends React.Component {
 
 			// Check for email && password length
 			if (email.length > 0 && password.length > 0) {
-				this.props
+				console.log(`login`);
+				this.props.apolloClient
 					.mutate({
+						mutation:mutator,
 						variables: {
 							data: {
 								email,
@@ -29,9 +39,11 @@ class login extends React.Component {
 							}
 						}
 					})
-					.then(() => {
+					.then((res) => {
+						console.log(res)
+						if(res)
 						this.setState({ error: null });
-						window.location = '/dashboard';
+						Router.push('/dashboard');
 					})
 					.catch(({ graphQLErrors: err }) => this.setState({ error: err }));
 			} else {
@@ -65,49 +77,11 @@ class login extends React.Component {
 				<div>
 					<button type="submit"> Log In </button>
 				</div>
-				<style jsx>
-					{`
-						* {
-							box-sizing: border-box;
-							margin: 0;
-						}
-						h1 {
-							margin: 2rem 0;
-						}
-						label {
-							display: block;
-						}
-						form > div {
-							margin-top: 1rem;
-						}
-						input,
-						button {
-							padding: 0.5rem;
-						}
-						button {
-							width: 12rem;
-							border: none;
-							cursor: pointer;
-						}
-						.error {
-							color: red;
-							display: block;
-							margin: 1rem 0;
-						}
-					`}
-				</style>
 			</form>
 		];
 	}
 }
 
-const mutator = gql`
-	mutation login($data: LoginInput!) {
-		login(data: $data) {
-			id
-			firstName
-			email
-		}
-	}
-`;
-export default graphql(mutator)(login);
+
+
+export default withApollo(login);

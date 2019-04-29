@@ -21,19 +21,20 @@ export const headerBackground = '#000000';
 export const theme = (type = 'light') =>
 	createMuiTheme({
 		palette: {
-			type,
-			// primary: {
-			// 	// light: will be calculated from palette.primary.main,
-			// 	main: '#ff4400',
-			// 	// dark: will be calculated from palette.primary.main,
-			// 	// contrastText: will be calculated to contrast with palette.primary.main
-			// },
-			// secondary: {
-			// 	light: '#0066ff',
-			// 	main: '#0044ff',
-			// 	// dark: will be calculated from palette.secondary.main,
-			// 	contrastText: '#ffcc00',
-			// },
+			type:"dark",
+			primary: {
+				// light: will be calculated from palette.primary.main,
+				main: '#1D6ADA',
+				dark: '#121832',
+				// contrastText: will be calculated to contrast with palette.primary.main
+			},
+			secondary: {
+				light: '#1F2745',
+				main: '#121832',
+				// dark: will be calculated from palette.secondary.main,
+				contrastText: '#ffcc00',
+
+			},
 		},
 		typography: {
 			fontFamily: [
